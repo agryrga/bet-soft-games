@@ -1,0 +1,84 @@
+@use '../../styles/variables' as *;
+
+.wrapper {
+  flex: 5 1 0;
+  border-radius: 10px;
+  background-color: $black-dark;
+  padding: 10px 20px;
+  overflow: hidden;
+
+  @media (max-width: 1024px) {
+    flex: 1;
+  }
+}
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  margin-bottom: 5px;
+  color: $white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  transition: border-color 0.2s ease-in-out;
+  margin-right: 10px;
+  border: 1px solid $gold-dark;
+  background-color: $black-dark;
+  width: 100%;
+
+  &:hover {
+    border-color: $gold-light;
+  }
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 11px 12px 11px 0;
+  color: $white;
+  font-weight: 600;
+  font-size: 14px;
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+button {
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+  border: none;
+  background-color: $gold-light;
+  padding: 12px 20px;
+  color: $black-dark;
+  font-weight: bold;
+  font-weight: 700;
+  font-size: 14px;
+
+  &:hover {
+    background-color: $gold-dark;
+  }
+}

@@ -1,0 +1,31 @@
+@use '../../styles/variables' as *;
+
+.loaderWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid $white;
+  border-top: 5px solid $gold-light;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 12px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+p {
+  margin: 0;
+  font-size: 14px;
+  color: $gold-light;
+}

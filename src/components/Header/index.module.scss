@@ -1,0 +1,10 @@
+.header {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 20px;
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
+}
