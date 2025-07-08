@@ -18,7 +18,7 @@ export const useIntersectionObserver = ({
 
   const handleIntersect = useCallback(
     (entries: IntersectionObserverEntry[]) => {
-      if (entries[0].isIntersecting && enabled) {
+      if (entries[0]?.isIntersecting && enabled) {
         onIntersect()
       }
     },
@@ -26,7 +26,12 @@ export const useIntersectionObserver = ({
   )
 
   useEffect(() => {
-    if (!enabled) return
+    if (observerRef.current) {
+      observerRef.current.disconnect()
+      observerRef.current = null
+    }
+
+    if (!enabled || !targetRef.current) return
 
     observerRef.current = new IntersectionObserver(handleIntersect, {
       rootMargin,
@@ -34,13 +39,14 @@ export const useIntersectionObserver = ({
     })
 
     const currentTarget = targetRef.current
-    if (currentTarget) {
+    if (currentTarget && observerRef.current) {
       observerRef.current.observe(currentTarget)
     }
 
     return () => {
       if (observerRef.current) {
         observerRef.current.disconnect()
+        observerRef.current = null
       }
     }
   }, [handleIntersect, rootMargin, threshold, enabled])

@@ -56,50 +56,55 @@ export const MainPage = () => {
     [filteredGames, visibleCount]
   )
 
-  if (isLoading) return <Loader />
-  if (isError) return <div>Error loading games</div>
-
   return (
     <section>
-      <Header options={typeOptions} />
-      <Divider />
-
-      {filteredGames.length > 0 ? (
+      {isLoading ? (
+        <Loader />
+      ) : isError ? (
+        <div>Error loading games</div>
+      ) : (
         <>
-          <GameList games={displayedGames} />
+          <Header options={typeOptions} />
+          <Divider />
 
-          {isLoadingMore && (
+          {filteredGames.length > 0 ? (
+            <>
+              <GameList games={displayedGames} />
+
+              {isLoadingMore && (
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    padding: '20px',
+                  }}
+                >
+                  <Loader />
+                </div>
+              )}
+
+              {hasMoreItems && (
+                <div
+                  ref={targetRef}
+                  style={{
+                    height: '10px',
+                    visibility: 'hidden',
+                  }}
+                />
+              )}
+            </>
+          ) : (
             <div
               style={{
-                display: 'flex',
-                justifyContent: 'center',
-                padding: '20px',
+                textAlign: 'center',
+                padding: '40px',
+                color: '#666',
               }}
             >
-              <Loader />
+              Игры не найдены
             </div>
           )}
-
-          {hasMoreItems && (
-            <div
-              ref={targetRef}
-              style={{
-                height: '100px',
-                visibility: 'hidden',
-              }}
-            />
-          )}
         </>
-      ) : (
-        <div
-          style={{
-            textAlign: 'center',
-            padding: '40px',
-            color: '#666',
-          }}
-        >
-          Игры не найдены
-        </div>
       )}
     </section>
   )
